@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riddhiman Datta — Systems Engineer, APIs & Practical AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090D16;
+      --surface: #0F172A;
+      --card-bg: #111827;
+      --card-border: #1E293B;
+      --primary: #0284C7;
+      --primary-hover: #0369A1;
+      --accent: #38BDF8;
+      --accent-purple: #818CF8;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --success: #10B981;
+      --warning: #F59E0B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Sticky Glass Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+      padding: 16px 24px;
+    }
+
+    .nav-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding-left: 12px;
+      border-left: 1px solid var(--card-border);
+    }
+
+    .social-btn {
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      background: #1E293B;
+      transform: translateY(-1px);
+    }
+
+    .social-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 980px;
+      margin: 80px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .badge-pulse {
+      width: 6px;
+      height: 6px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5.2vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: #3B82F6;
+      transform: translateY(-2px);
+    }
+
+    /* Section Structure */
+    section {
+      max-width: 1120px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .section-header h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Honors & Metrics Strip */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .metric-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .metric-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .metric-sub {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* Developer Bio & Oak Technologies Box */
+    .dev-profile-container {
+      background: linear-gradient(180deg, #111827 0%, #0C1220 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .dev-profile-container {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+    }
+
+    .dev-bio h3 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+
+    .dev-role {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .dev-bio p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      background: #1E293B;
+      color: #CBD5E1;
+      padding: 5px 11px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+    }
+
+    .org-card {
+      background: #090D16;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Project Ecosystem Cards */
+    .project-cluster {
+      background: linear-gradient(180deg, #111827 0%, #0D1322 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 32px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .project-cluster-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .cluster-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .sub-card {
+      background: #090D16;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .sub-card:hover {
+      border-color: #3B82F6;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 36px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Glass Navbar -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">RD</div>
+        Riddhiman <span>Datta</span>
+      </a>
+
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Engineering</a>
+          <a href="#honors">Contests</a>
+          <a href="/api">API & SDK Docs</a>
+          <a href="https://stats.uptimerobot.com/D4BYNP8IeG" target="_blank" rel="noopener noreferrer">Status ↗</a>
+        </div>
+
+        <div class="social-icons">
+          <!-- X (Twitter) -->
+          <a href="https://x.com/riddhiman_datta" target="_blank" rel="noopener noreferrer" class="social-btn" title="Follow on X">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- GitHub Profile -->
+          <a href="https://github.com/specrthyahskod" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Profile">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="badge-pill">
+      <div class="badge-pulse"></div>
+      High School Developer & Systems Builder
+    </div>
+    <h1>Practical software engineered for <span>real-world problems</span></h1>
+    <p class="hero-subtitle">
+      Building capstone applications, distributed bots, custom binary file protocols, and local Small Language Model (SLM) pipelines with deterministic backends.
+    </p>
+    <div class="cta-group">
+      <a href="#projects" class="btn btn-primary">Explore Engineering Repositories ↓</a>
+      <a href="/api" class="btn btn-secondary">FinREST API & SDK Docs ↗</a>
+      <a href="https://stats.uptimerobot.com/D4BYNP8IeG" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Live Server Status ↗</a>
+    </div>
+  </header>
+
+  <!-- Honors / Verification Bar -->
+  <section id="honors">
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Global Contest Placement</div>
+        <div class="metric-val">Top 20% Finalist</div>
+        <div class="metric-sub">ICSC 2025 Final Round</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">National Honor</div>
+        <div class="metric-val">Silver Award</div>
+        <div class="metric-sub">LSP 2025 Nationals</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Software Initiative</div>
+        <div class="metric-val">Founder & Lead</div>
+        <div class="metric-sub">Oak Technologies Group</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Package Distribution</div>
+        <div class="metric-val">PyPI Verified</div>
+        <div class="metric-sub">finrest v0.1.1 Client SDK</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Profile & Oak Technologies -->
+  <section id="about">
+    <div class="section-header">
+      <h2>About Riddhiman Datta</h2>
+      <p>Apps, Websites, Custom APIs, and Small Language Models</p>
+    </div>
+
+    <div class="dev-profile-container">
+      <div class="dev-bio">
+        <h3>Builder Profile</h3>
+        <span class="dev-role">High School Developer • Tech Enthusiast</span>
+        <p>
+          Hey everyone, I am Riddhiman, a high school coding and tech enthusiast who loves to build capstone projects that solve practical, everyday problems through technology. I focus on areas where off-the-shelf software falls short—like international students balancing fluctuating rosters under strict immigration labor caps.
+        </p>
+        <p>
+          I also founded <strong>Oak Technologies</strong>, a collaborative coding group where my friends and I turn creative ideas into functioning technical reality. Previously, I placed in the top 20% globally in the final round of the <strong>International Computer Science Competition 2025</strong> and earned a <strong>Silver honor at the LSP 2025 nationals</strong>.
+        </p>
+        <p>
+          My technical work emphasizes end-to-end implementation: from designing strongly-typed schemas and handling structured JSON responses to compiling client packages and writing deterministic mathematical calculus.
+        </p>
+
+        <div class="tag-cloud">
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript (Node.js)</span>
+          <span class="tag">Java</span>
+          <span class="tag">JSON Response Handling</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">SLMs & Ollama</span>
+          <span class="tag">Discord.js v14</span>
+          <span class="tag">Computer Vision OCR</span>
+        </div>
+      </div>
+
+      <div class="org-card">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size: 1.5rem;">🌳</span>
+          <div>
+            <h4 style="font-size: 1.1rem; font-weight:700;">Oak Technologies</h4>
+            <span style="font-size:12px; color:var(--accent);">Collaborative Student Tech Group</span>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55;">
+          A student-led development circle turning utility concepts into functional projects. We focus on lightweight developer utilities, distributed community tools, and peer-focused software solutions.
+        </p>
+        <div style="margin-top:auto; padding-top:12px; border-top:1px solid var(--card-border);">
+          <a href="https://github.com/specrthyahskod" target="_blank" style="color:var(--accent); text-decoration:none; font-size:13px; font-weight:600;">
+            View Oak Tech Repositories ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Projects Showcase -->
+  <section id="projects">
+    <div class="section-header">
+      <h2>Engineering Systems & Repositories</h2>
+      <p>Documented GitHub source code, architectural components, and distributed software.</p>
+    </div>
+
+    <!-- PROJECT 1: FIRST REPOSITORY ON GIT (SATELLITE TRACKER) -->
+    <div class="project-cluster" style="border-left: 3px solid var(--warning);">
+      <div class="project-cluster-header">
+        <div>
+          <span class="cluster-badge" style="color: var(--warning); background: rgba(245, 158, 11, 0.1);">Debut Open-Source Release</span>
+          <h3 style="font-size: 1.55rem; font-weight:800; margin-top:8px;">SatelliteTracker — Real-Time Orbital Telemetry Bot</h3>
+        </div>
+        <a href="https://github.com/specrthyahskod/SatelliteTracker" target="_blank" class="btn btn-secondary">
+          GitHub Repository ↗
+        </a>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.94rem; line-height: 1.6; max-width: 880px;">
+        My first public GitHub project: an all-in-one space telemetry assistant on Discord. Fuses real-time orbital calculations, NORAD TLE coordinate vector parsing, astronomical tracking APIs, and event-driven commands to provide live space data directly to Discord communities.
+      </p>
+
+      <div class="tag-cloud" style="margin-top:14px;">
+        <span class="tag">JavaScript (Node.js)</span>
+        <span class="tag">Discord.js v14</span>
+        <span class="tag">TLE Coordinate Vectors</span>
+        <span class="tag">REST Telemetry Fetching</span>
+        <span class="tag">Async Event Loop</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: FLAGSHIP ECOSYSTEM (BUDGETWISE AI SUITE) -->
+    <div class="project-cluster" style="border-left: 3px solid var(--accent);">
+      <div class="project-cluster-header">
+        <div>
+          <span class="cluster-badge">Flagship Capstone Ecosystem</span>
+          <h3 style="font-size: 1.55rem; font-weight:800; margin-top:8px;">BudgetWise AI — Predictive Financial Intelligence</h3>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/specrthyahskod/BudgetWise-AI" target="_blank" class="btn btn-secondary">
+            Core Repo ↗
+          </a>
+          <a href="/api" class="btn btn-primary">
+            FinREST API Docs ↗
+          </a>
+        </div>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.94rem; line-height: 1.6; max-width: 880px;">
+        A multi-platform financial intelligence engine built for international students living under statutory labor limitations (such as Australia's Subclass 500 visa 48-hour fortnightly work limits). Combines local SLMs (Llama 3.2 via Ollama), deterministic financial calculus, custom binary audit formats, and receipt vision extraction.
+      </p>
+
+      <!-- Sub-Modules Grid -->
+      <div class="sub-grid">
+        
+        <!-- Sub-Module A: FinREST Python SDK -->
+        <div class="sub-card">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="font-size: 0.95rem;">FinREST Client SDK</strong>
+              <span style="font-size:10px; font-family:'JetBrains Mono'; color:#38BDF8;">PyPI v0.1.1</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+              Published Python client package for communicating with the FinREST policy engine, validating data schemas, and automating wage-hour math.
+            </p>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--card-border); padding-top:10px;">
+            <a href="https://github.com/specrthyahskod/Finrest-api-version--0.0.1" target="_blank" style="font-size:12px; color:var(--accent); text-decoration:none; font-weight:600;">GitHub Repo ↗</a>
+            <a href="https://test.pypi.org/project/finrest/" target="_blank" style="font-size:12px; color:var(--text-muted); text-decoration:none;">Package Page ↗</a>
+          </div>
+        </div>
+
+        <!-- Sub-Module B: .RCD File Specification -->
+        <div class="sub-card">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="font-size: 0.95rem;">.RCD File Structure</strong>
+              <span style="font-size:10px; font-family:'JetBrains Mono'; color:#10B981;">Custom Protocol</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+              Specification for the custom <code>.rcd</code> report container format, enabling encrypted local ledger persistence, metadata verification, and tamper-resistant exports.
+            </p>
+          </div>
+          <div style="border-top:1px solid var(--card-border); padding-top:10px;">
+            <a href="https://github.com/specrthyahskod/BudgetWise-AI-s-.rcd-file-type-structure" target="_blank" style="font-size:12px; color:var(--accent); text-decoration:none; font-weight:600;">GitHub Repo ↗</a>
+          </div>
+        </div>
+
+        <!-- Sub-Module C: KIE & QR Hash Analyzer -->
+        <div class="sub-card">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="font-size: 0.95rem;">Receipt KIE & QR Analyzer</strong>
+              <span style="font-size:10px; font-family:'JetBrains Mono'; color:#A855F7;">Computer Vision</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+              Key Information Extraction (KIE) pipeline combining QR hash parsing and receipt OCR to pull line costs and merchant data straight into local databases.
+            </p>
+          </div>
+          <div style="border-top:1px solid var(--card-border); padding-top:10px;">
+            <a href="https://github.com/specrthyahskod/budgetwise_ai_receipt-kie-data-and-qr-hash-data-analyzer" target="_blank" style="font-size:12px; color:var(--accent); text-decoration:none; font-weight:600;">GitHub Repo ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://x.com/riddhiman_datta" target="_blank">X (Twitter)</a>
+      <a href="https://github.com/specrthyahskod" target="_blank">GitHub</a>
+      <a href="/api">API Documentation</a>
+      <a href="https://stats.uptimerobot.com/D4BYNP8IeG" target="_blank">UptimeRobot Status</a>
+      <a href="https://github.com/specrthyahskod/BudgetWise-AI/blob/main/LICENSE" target="_blank">MIT License</a>
+    </div>
+    <p>© 2026 Riddhiman Datta • Open-Source Developer & Student • Oak Technologies</p>
+  </footer>
+
+</body>
+</html>
