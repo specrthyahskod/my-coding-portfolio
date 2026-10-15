@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riddhiman Datta — Systems Engineer, APIs & Practical AI</title>
+  <title>Riddhiman Datta — Systems Engineer & Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090D16;
-      --surface: #0F172A;
-      --card-bg: #111827;
-      --card-border: #1E293B;
+      --bg: #07090E;
+      --card-bg: rgba(15, 23, 42, 0.45);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(56, 189, 248, 0.35);
       --primary: #0284C7;
       --primary-hover: #0369A1;
       --accent: #38BDF8;
@@ -32,6 +32,15 @@
 
     body {
       background-color: var(--bg);
+      /* Subtle animated ambient radial gradient */
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(129, 140, 248, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        /* High-tech micro dot matrix */
+        radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+      background-attachment: fixed;
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
@@ -42,9 +51,10 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(9, 13, 22, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+      background: rgba(7, 9, 14, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
       padding: 16px 24px;
     }
 
@@ -76,6 +86,7 @@
       justify-content: center;
       font-size: 0.95rem;
       font-weight: 700;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
     }
 
     .brand span {
@@ -122,15 +133,16 @@
       width: 34px;
       height: 34px;
       border-radius: 8px;
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--card-border);
+      backdrop-filter: blur(8px);
       transition: all 0.2s;
     }
 
     .social-btn:hover {
       color: var(--text);
       border-color: var(--accent);
-      background: #1E293B;
+      background: rgba(56, 189, 248, 0.1);
       transform: translateY(-1px);
     }
 
@@ -155,11 +167,12 @@
       padding: 6px 14px;
       border-radius: 9999px;
       background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      border: 1px solid rgba(56, 189, 248, 0.2);
       color: var(--accent);
       font-size: 0.85rem;
       font-weight: 600;
       margin-bottom: 24px;
+      backdrop-filter: blur(10px);
     }
 
     .badge-pulse {
@@ -213,7 +226,7 @@
     .btn-primary {
       background-color: var(--primary);
       color: #fff;
-      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.3);
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.35);
     }
 
     .btn-primary:hover {
@@ -222,13 +235,15 @@
     }
 
     .btn-secondary {
-      background-color: var(--card-bg);
+      background-color: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
       color: var(--text);
+      backdrop-filter: blur(10px);
     }
 
     .btn-secondary:hover {
-      border-color: #3B82F6;
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(255, 255, 255, 0.08);
       transform: translateY(-2px);
     }
 
@@ -267,11 +282,18 @@
     }
 
     .metric-card {
-      background-color: var(--card-bg);
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 14px;
       padding: 20px;
-      position: relative;
+      transition: all 0.25s;
+    }
+
+    .metric-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
     }
 
     .metric-label {
@@ -294,10 +316,12 @@
       margin-top: 4px;
     }
 
-    /* Developer Bio & Oak Technologies Box */
+    /* Developer Profile & Oak Technologies Box */
     .dev-profile-container {
-      background: linear-gradient(180deg, #111827 0%, #0C1220 100%);
+      background: rgba(15, 23, 42, 0.35);
       border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 20px;
       padding: 40px;
       display: grid;
@@ -345,31 +369,38 @@
     .tag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
-      background: #1E293B;
+      background: rgba(255, 255, 255, 0.05);
       color: #CBD5E1;
       padding: 5px 11px;
       border-radius: 6px;
-      border: 1px solid #334155;
+      border: 1px solid var(--card-border);
     }
 
     .org-card {
-      background: #090D16;
+      background: rgba(7, 9, 14, 0.6);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      backdrop-filter: blur(10px);
     }
 
     /* Project Ecosystem Cards */
     .project-cluster {
-      background: linear-gradient(180deg, #111827 0%, #0D1322 100%);
+      background: rgba(15, 23, 42, 0.35);
       border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 18px;
       padding: 32px;
       margin-bottom: 28px;
-      position: relative;
+      transition: all 0.3s;
+    }
+
+    .project-cluster:hover {
+      border-color: var(--card-border-hover);
     }
 
     .project-cluster-header {
@@ -400,7 +431,7 @@
     }
 
     .sub-card {
-      background: #090D16;
+      background: rgba(7, 9, 14, 0.5);
       border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 20px;
@@ -411,7 +442,8 @@
     }
 
     .sub-card:hover {
-      border-color: #3B82F6;
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(7, 9, 14, 0.75);
       transform: translateY(-2px);
     }
 
@@ -426,6 +458,8 @@
       flex-direction: column;
       gap: 12px;
       align-items: center;
+      background: rgba(7, 9, 14, 0.8);
+      backdrop-filter: blur(16px);
     }
 
     .footer-links {
@@ -466,11 +500,9 @@
         </div>
 
         <div class="social-icons">
-          <!-- X (Twitter) -->
           <a href="https://x.com/riddhiman_datta" target="_blank" rel="noopener noreferrer" class="social-btn" title="Follow on X">
             <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <!-- GitHub Profile -->
           <a href="https://github.com/specrthyahskod" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Profile">
             <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           </a>
